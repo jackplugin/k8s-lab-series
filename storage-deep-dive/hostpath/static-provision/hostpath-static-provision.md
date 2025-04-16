@@ -42,6 +42,7 @@ kubectl get pod | grep mysql
 ## What I learned during working with hostpath to statically provision persistence volume in a multi-node cluster
 
 - Always specify `storageClassName` in pv and pvc manifest to achieve accurate matching. The specified `storageClassName `should not be conflict with the existing ones, customizing it. Without specifying `storageClassName`, the pvc will use default `storageClassName`, which may not be your intention. Avoding to use `storageClassName: ""`, it may lead to confustion.
+
 - Always enforce `nodeAffinity `rules in pv or pod manifest to guarantee pod scheduling on the node providing volume. Without `nodeAffinity`, Kubernetes will dynamically select a node based on the cluster state at deployment time, which may not be the node you intended.
-  
-  
+
+- When the path (e.g. `path: /data/mysql`) specified for `hostPath:` is not existing, k8s will automatically create it by default on the node.
