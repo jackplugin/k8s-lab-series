@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0 # 使用官方MySQL 8.0镜像
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "password" # 明文密码（生产环境应用Secret替代）
+          ports:
+            - containerPort: 3306 # 暴露MySQL默认端口
+          volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysql # 挂载数据库存储路径（数据持久化）
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "1Gi"
+              cpu: "1"
+      volumes:
+        - name: mysql-storage
+          persistentVolumeClaim:
+            claimName: pvc-from-static-pv-for-mysql # 绑定预先创建的PVC（需确保存在）
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - multi-node-lab-m02
