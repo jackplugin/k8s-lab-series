@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jack-static-nfs-pv
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany # NFS supports RWX
+  persistentVolumeReclaimPolicy: Delete # Or Retain  - no effective for static provision
+  storageClassName: jack-nfs-storage
+  nfs:
+    server: 172.30.33.186 # NFS server IP/hostname
+    path: /var/nfs/general/pv1 # Exported NFS path

@@ -10,7 +10,7 @@ Each lab is a self-contained exercise focusing on a key concept in Kubernetes, f
 
 | Part | Title | Description |
 |------|-------|-------------|
-| ✅ 1 | [Set Up a Local Multi-Node Kubernetes Cluster](#) | Install and configure Minikube in WSL2 with Docker Desktop and a local proxy to run Kubernetes on Windows 11 Home. |
+| ✅ 1 | [Set Up a Local Multi-Node Kubernetes Cluster](https://example.com/lab1) | Install and configure Minikube in WSL2 with Docker Desktop and a local proxy to run Kubernetes on Windows 11 Home. |
 | ⏳ 2 | [Deploy Your First Pod with YAML](#) | Understand the anatomy of a Pod and practice deploying a basic containerized app. |
 | ⏳ 3.1 | [Deployments 101: Rolling Updates](#) | Learn how Deployments provide scaling and self-healing capabilities. |
 | ⏳ 3.2 | [Health Checks with Probes](#) | Add readiness and liveness probes to your apps. |
