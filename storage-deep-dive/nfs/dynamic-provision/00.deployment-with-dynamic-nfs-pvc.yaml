@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jack-dynamic-nfs-pvc
+spec:
+  storageClassName: nfs-client # which is the storage class defined by nfs-subdir-external-provisioner
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jack-deployment-web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: jack-nginx-web
+  template:
+    metadata:
+      labels:
+        app: jack-nginx-web
+    spec:
+      containers:
+        - name: nginx-web
+          image: nginx
+          volumeMounts:
+            - name: nginx-nfs-storage
+              mountPath: /usr/share/nginx/html
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "1Gi"
+              cpu: "1"
+      volumes:
+        - name: nginx-nfs-storage
+          persistentVolumeClaim:
+            claimName: jack-dynamic-nfs-pvc
