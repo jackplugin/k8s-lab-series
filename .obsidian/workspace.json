@@ -13,12 +13,12 @@
             "state": {
               "type": "split-diff-view",
               "state": {
-                "aFile": "README.md",
-                "bFile": "README.md",
+                "aFile": ".obsidian/workspace.json",
+                "bFile": ".obsidian/workspace.json",
                 "aRef": ""
               },
               "icon": "diff",
-              "title": "Diff: README"
+              "title": "Diff: workspace.json"
             }
           }
         ]
@@ -163,7 +163,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 715.5
+    "width": 581.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -176,8 +176,11 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "dced0e13cee483f3",
+  "active": "cd1509997947cbdd",
   "lastOpenFiles": [
+    "storage-deep-dive/nfs/static-provision/03.multiple-pods-single-pvc.yaml",
+    "storage-deep-dive/nfs/dynamic-provision/00.deployment-with-dynamic-nfs-pvc.yaml",
+    "storage-deep-dive/nfs/dynamic-provision",
     "k8s-journey-log.md",
     "README.md"
   ]
